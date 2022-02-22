@@ -13,7 +13,12 @@ var walk = function(dir, done) {
         if (stat && stat.isDirectory()) {
           walk(file, function(err, res) {
            // results = results.concat(res);
-          
+           fs.readFile(file, function (err, file) {
+            //if (err) throw err;
+            if(file.includes('process.env.')){
+             console.log('found');
+            } else console.log('not found');
+          });
           
             next();
           });
@@ -28,7 +33,7 @@ var walk = function(dir, done) {
 
 
 
-walk('/Users/hakanyalcin/smartgift/hero-order-service', function(err, results) {
+walk('/Users/hakanyalcin/smartgift/env-extractor/test', function(err, results) {
   if (err) throw err;
   console.log(results);
 });
