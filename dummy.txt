@@ -1,0 +1,4 @@
+selam
+process.env.hakan
+process.env.yalcin
+naber
