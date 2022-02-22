@@ -12,18 +12,19 @@ var walk = function(dir, done) {
       fs.stat(file, function(err, stat) {
         if (stat && stat.isDirectory()) {
           walk(file, function(err, res) {
-           // results = results.concat(res);
-           fs.readFile(file, function (err, file) {
-            //if (err) throw err;
-            if(file.includes('process.env.')){
-             console.log('found');
-            } else console.log('not found');
-          });
-          
+           // results = results.concat(res);         
             next();
           });
         } else {
-          results.push(file);
+
+          fs.readFile(file, function (err, file) {
+            //if (err) throw err;
+            if(file.includes('hakan')){
+             console.log('found');
+            } else console.log('not found');
+          });
+
+          
           next();
         }
       });
@@ -35,5 +36,4 @@ var walk = function(dir, done) {
 
 walk('/Users/hakanyalcin/smartgift/env-extractor/test', function(err, results) {
   if (err) throw err;
-  console.log(results);
 });
